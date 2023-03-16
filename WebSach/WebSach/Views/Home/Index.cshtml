@@ -1,4 +1,4 @@
-﻿
+﻿@model WebSach.Models.Books
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -160,10 +160,10 @@
             </div>
             <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 400px; overflow: hidden;">
                 <div>
-                    <img data-u="image" src="~/ingBanner/R.jpg" />
+                    <img data-u="image" src="~/Content/images/banner/R.jpg" />
                 </div>
                 <div>
-                    <img data-u="image" src="~/ingBanner/SMP-books-banner.jpg" />
+                    <img data-u="image" src="~/Content/images/banner/SMP-books-banner.jpg" />
                 </div>
             </div>
             <!-- Bullet Navigator -->
@@ -180,6 +180,15 @@
         <script type="text/javascript">jssor_1_slider_init();</script>
 
     </form>
+    <div class="row">
+        <div class="col-2">
+            <a href="" class="btn">
+                <img data-u="image" src="~/Content/images/banner/reading-book-web-banner-design-student-reading-book-on-stack-of-book-to-get-inspiration-online-education-digital-classroom-e-learning-concept-header-or-footer-banner-free-vector.jpg" />
+            </a>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
 </div>
 
 <!---------Sach---------------->
@@ -188,27 +197,7 @@
         <ul class="book">
             @foreach (var book in Model)
             {
-                <li>
-                    <div class="date">
-                        <div class="time">
-                            @book.DateTime.ToString("hh:mm")
-                        </div>
-                        <div class="day">
-                            @book.DateTime.ToString("dd")
-                        </div>
-                        <div class="month">
-                            @book.DateTime.ToString("MM")
-                        </div>
-                    </div>
-                    <div class="details">
-                        <span class="lecturer">
-                            @book.Lecturer.Name
-                        </span>
-                        <span class="category">
-                            - @book.Category.Name
-                        </span>
-                    </div>
-                </li>
+                
             }
         </ul>
     </div>

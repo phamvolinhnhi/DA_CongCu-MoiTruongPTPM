@@ -9,6 +9,12 @@ namespace WebSach.Models
     [Table("User")]
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            Books = new HashSet<Books>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int User_Id { get; set; }
@@ -28,5 +34,10 @@ namespace WebSach.Models
 
         [StringLength(50)]
         public string Status { get; set; }
+
+        public bool? Permission_Id { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Books> Books { get; set; }
     }
 }

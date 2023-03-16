@@ -135,7 +135,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Authors.cs" />
     <Compile Include="Models\Books.cs" />
     <Compile Include="Models\Categories.cs" />
@@ -152,6 +151,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\login.jpg" />
+    <Content Include="Content\images\banner\reading-book-web-banner-design-student-reading-book-on-stack-of-book-to-get-inspiration-online-education-digital-classroom-e-learning-concept-header-or-footer-banner-free-vector.jpg" />
     <Content Include="Content\images\shortcuticon.png" />
     <Content Include="CSS\dangky.css" />
     <Content Include="CSS\dangnhap.css" />
@@ -166,8 +166,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="ingBanner\R.jpg" />
-    <Content Include="ingBanner\SMP-books-banner.jpg" />
+    <Content Include="Content\images\banner\R.jpg" />
+    <Content Include="Content\images\banner\SMP-books-banner.jpg" />
     <Content Include="jsBanner\jssor.slider-23.1.5.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

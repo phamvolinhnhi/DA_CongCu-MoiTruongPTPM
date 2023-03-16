@@ -13,11 +13,13 @@ namespace WebSach.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Chapter_Id { get; set; }
 
-        public int? Chapter_Number { get; set; }
-
         [StringLength(250)]
         public string Chapter_Name { get; set; }
 
         public string Content { get; set; }
+
+        public int? Book_Id { get; set; }
+
+        public virtual Books Books { get; set; }
     }
 }

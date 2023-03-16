@@ -10,8 +10,7 @@ namespace WebSach.Models
     public partial class Permission
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Permission_Id { get; set; }
+        public bool Permission_Id { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }

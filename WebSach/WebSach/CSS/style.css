@@ -365,7 +365,21 @@ a {
     background-size: cover;
 }
 
-
+.row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around
+}
+    .row .col-2 {
+        flex-basis: 100%;
+    }
+        .row .col-2 img {
+            width: 100%;
+        }
+        .row .col-2 .btn {
+            padding: 0;
+        }
 
 .pc_display {
     display: none !important

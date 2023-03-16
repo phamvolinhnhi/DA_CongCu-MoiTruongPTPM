@@ -8,11 +8,10 @@ namespace WebSach.Models
     public partial class WebBookDb : DbContext
     {
         public WebBookDb()
-            : base("name=WebBookDb")
+            : base("name=WebBookDb1")
         {
         }
 
-        public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<Authors> Authors { get; set; }
         public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
@@ -26,6 +25,11 @@ namespace WebSach.Models
             modelBuilder.Entity<User>()
                 .Property(e => e.Status)
                 .IsFixedLength();
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Books)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
         }
     }
 }
