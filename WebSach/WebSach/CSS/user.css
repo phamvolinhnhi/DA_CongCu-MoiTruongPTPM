@@ -1,0 +1,12 @@
+﻿.user {
+    float: right;
+    font-size: 17px;
+    height: 44px;
+    width: 44px;
+    color: #fff;
+    background-color: #8CA55A;
+    border-radius: 150px;
+    line-height: 44px;
+    text-align: center;
+    position: relative;
+}
