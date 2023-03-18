@@ -293,7 +293,7 @@ a {
     float: right
 }
 
-.popup {
+.main-agileinfo {
     padding: 20px;
     display: none;
     position: fixed;
@@ -303,7 +303,8 @@ a {
 
     .popup .popup_center_important {
         width: 70%;
-        background: rgba(0, 0, 0, 0.2);
+        /*background: rgba(0, 0, 0, 0.2);*/
+        background-color: whitesmoke
         left: 50% !important;
         top: 50% !important;
         position: fixed !important;
@@ -315,54 +316,77 @@ a {
         border: none
     }
 
-    .popup form button {
-        background-color: #04AA6D;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-    }
+.main-agileinfo form button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
 
-    .popup input[type="submit"] {
-        font-size: .9em;
-        color: #fff;
-        background: #76b852;
-        outline: none;
-        border: 1px solid #76b852;
-        cursor: pointer;
-        padding: 0.9em;
-        width: 100%;
-        margin: 2em 0;
-        letter-spacing: 4px;
-    }
+.main-agileinfo input[type="submit"] {
+    font-size: .9em;
+    color: #fff;
+    background: #76b852;
+    outline: none;
+    border: 1px solid #76b852;
+    cursor: pointer;
+    padding: 0.9em;
+    width: 100%;
+    margin: 2em 0;
+    letter-spacing: 4px;
+}
 
     input[type="submit"]:hover {
         transition: .5s all;
         background: #8DC26F;
     }
-    .popup input[type="text"], input[type="email"], input[type="password"] {
-        font-size: 0.9em;
-        color: #fff;
-        font-weight: 100;
-        width: 100%;
-        display: block;
-        border: none;
-        padding: 0.8em;
-        border: solid 1px rgba(255, 255, 255, 0.37);
-        transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #fff 4%);
-        background-position: -800px 0;
-        background-size: 100%;
-        background-repeat: no-repeat;
-        font-family: 'Roboto', sans-serif;
-    }
+.main-agileinfo input[type="text"], input[type="email"], input[type="password"] {
+    font-size: 0.9em;
+    color: #fff;
+    font-weight: 100;
+    width: 100%;
+    display: block;
+    border: none;
+    padding: 0.8em;
+    border: solid 1px rgba(255, 255, 255, 0.37);
+    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #fff 4%);
+    background-position: -800px 0;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    font-family: 'Roboto', sans-serif;
+}
 
 .main-agileinfo {
     width: 100%;
     margin: 3em auto;
     background-size: cover;
+}
+
+.div_middle h2 {
+    font-size: 20px;
+    font-weight: 600;
+    position: relative;
+    text-transform: capitalize;
+    line-height: 30px;
+}
+
+.content{
+    padding-bottom: 20px;
+}
+
+.div_middle h2 .titlelist {
+    color: #f18121;
+    padding: 10px 0px;
+}
+
+.box-content {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 20px !important
 }
 
 .row {

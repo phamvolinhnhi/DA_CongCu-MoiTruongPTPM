@@ -13,14 +13,15 @@ namespace WebSach.Models
         public User()
         {
             Books = new HashSet<Books>();
+            Reaction = new HashSet<Reaction>();
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int User_Id { get; set; }
-
         [StringLength(50)]
         public string User_Name { get; set; }
+
+        [StringLength(50)]
+        public string Full_Name { get; set; }
 
         [StringLength(50)]
         public string Email { get; set; }
@@ -39,5 +40,8 @@ namespace WebSach.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Books> Books { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reaction> Reaction { get; set; }
     }
 }

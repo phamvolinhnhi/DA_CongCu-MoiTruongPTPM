@@ -81,3 +81,7 @@ D:\Courses\web\WebSach\WebSach\bin\EntityFramework.dll
 D:\Courses\web\WebSach\WebSach\bin\EntityFramework.SqlServer.dll
 D:\Courses\web\WebSach\WebSach\bin\EntityFramework.xml
 D:\Courses\web\WebSach\WebSach\bin\EntityFramework.SqlServer.xml
+D:\Courses\web\WebSach\WebSach\bin\PagedList.dll
+D:\Courses\web\WebSach\WebSach\bin\PagedList.Mvc.dll
+D:\Courses\web\WebSach\WebSach\bin\PagedList.xml
+D:\Courses\web\WebSach\WebSach\bin\PagedList.Mvc.xml

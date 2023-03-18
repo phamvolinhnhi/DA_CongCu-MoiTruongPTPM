@@ -13,7 +13,7 @@ namespace WebSach.Controllers
         public HomeController() {
             db = new WebBookDb();
         }
-        public ActionResult Index(int? page, string searchString, int Category_Id= 0)
+        public ActionResult Index()
         {
 
             //// 1. Đoạn code dùng để tìm kiếm
