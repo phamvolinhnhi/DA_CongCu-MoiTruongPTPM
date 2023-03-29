@@ -1,0 +1,201 @@
+﻿@using WebSach.Models;
+@model WebSach.Models.Books
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">"
+<style media="screen">
+    p {
+        font-size: 20px;
+        font-family: Tahoma, Verdana, sans-serif;
+        letter-spacing: 2px;
+        line-height: 1.8;
+    }
+
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    p.caption {
+        line-height: 3;
+    }
+
+    /*reset css*/
+    div, label {
+        margin: 0;
+        padding: 0;
+    }
+
+
+
+    .rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+    }
+
+
+        .rating > input {
+            display: none;
+        }
+
+        .rating > label {
+            position: relative;
+            width: 1.1em;
+            font-size: 5vw;
+            color: #FFD700;
+            cursor: pointer;
+        }
+
+            .rating > label::before {
+                content: "\2605";
+                position: absolute;
+                opacity: 0;
+            }
+
+            .rating > label:hover:before,
+            .rating > label:hover ~ label:before {
+                opacity: 1 !important;
+            }
+
+        .rating > input:checked ~ label:before {
+            opacity: 1;
+        }
+
+        .rating:hover > input:checked ~ label:before {
+            opacity: 0.4;
+        }
+
+    button {
+        background: #fff;
+        border: unset;
+        outline: 0;
+        font-size: 18px;
+        cursor: pointer;
+        color: #65676b;
+        padding: 5px 10px;
+    }
+
+        button.liked {
+            color: #0571ed;
+        }
+
+            button.liked i {
+                animation: anim 0.5s ease-in-out;
+                -webkit-animation: anim 0.5s ease-in-out;
+            }
+</style>
+
+
+@*<div class="col-sm-12 col=md-12">
+    <div class="thumbnail">
+        <p>@Html.DisplayFor(model => model.Avatar)</p>
+        <img style="width:50px;height:50px" src="~/Content/images/" />
+
+    </div>
+    <div class="caption">
+        <p><strong>Tên sách:</strong> @Html.DisplayFor(model => model.Title)</p>
+        <p><strong>Thể loại:</strong> @Html.DisplayFor(model => model.Categories.Category_Name)</p>
+        <p><strong>Tác giả:</strong> @Html.DisplayFor(model => model.Author)</p>
+        <p><strong>Mô tả:</strong> @Html.DisplayFor(model => model.Content)</p>
+
+        <p>
+
+            @Html.ActionLink("Back", "Index", "", new { @class = "btn btn-info" })
+        </p>
+
+    </div>
+</div>
+
+<div class="well">
+    <h1>Bình luận<span class="gliphicon gliphicon-pencil"></span></h1>
+
+</div>*@
+
+<div class="div_middle">
+    <div class="main_content">
+        <div class="book_detail">
+            <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="@Url.Action("Index","Home")">
+                        <span itemprop="name">Trang chủ</span>
+                    </a>
+                    <meta itemprop="position" content="1" />
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="@Url.Action("Detail","Home", new { id = @Model.Book_Id})">
+                        <span itemprop="name">@Model.Title</span>
+                    </a>
+                    <meta itemprop="position" content="2" />
+                </li>
+            </ol>
+            <div class="book_info">
+                <div class="book_avatar" itemtype="https://schema.org/ImageObject">
+                    <img itemprop="image" alt="@Model.Title" src="~/Content/images/books/@Model.Avatar" />
+                </div>
+                <div class="book_other" itemscope itemtype="http://schema.org/Book">
+                    <h1 itemprop="name">@Model.Title</h1>
+                    <div class="txt">
+                        <ul class="list-info">
+                            <li class="author row">
+                                <p class="name col-xs-3">
+                                    <i class="fa fa-user"></i>
+                                    Tác giả
+                                </p>
+                                <p class="col-xs-9">@Model.Author</p>
+                            </li>
+                            <li class="row">
+                                <p class="name col-xs-3">
+                                    <i class="fa fa-eye">
+                                    </i>
+                                    Luợt xem
+                                </p>
+                                <p class="col-xs-9">@Model.View</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="list01">
+                        <li>
+                            <a href="@Url.Action("The-Loai","Home",new { id = @Model.Categories.Category_Name})">@Model.Categories.Category_Name</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <h3>
+                <i class="fa fa-indo-circle">
+                </i>
+                Giới thiệu
+            </h3>
+            <div class="story-detail-info detail-content">
+                <p>
+                    @Model.Description
+                </p>
+            </div>
+            <h3>
+                <i class="fa fa-database" aria-hidden="true">
+                </i>
+                Danh sách chương
+            </h3>
+            <div class="list-chapter">
+                <div class="works-chapter-list">
+
+                </div>
+            </div>
+            <div class="comment-container" id="comment_list">
+                <span class="story-detail-title">
+                    <i class="fa fa-comments"></i>
+                    Bình luận 
+                </span>
+                <div class="group01 comment-container">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

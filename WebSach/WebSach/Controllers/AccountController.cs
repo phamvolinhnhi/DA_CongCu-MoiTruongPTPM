@@ -14,16 +14,18 @@ namespace WebSach.Controllers
     {
         private WebBookDb _db = new WebBookDb();
         // GET: Account
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            if (Session["UserName"] != null)
+
+            if (String.IsNullOrEmpty(id))
             {
-                return View();
+                return HttpNotFound();
             }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+            User find = _db.User.FirstOrDefault(p => p.User_Name == id);
+            if (find == null)
+                return HttpNotFound();
+            return View(find);
+
         }
 
         // LOGIN
@@ -48,7 +50,7 @@ namespace WebSach.Controllers
                     Session["FullName"] = data.FirstOrDefault().Full_Name;
                     Session["UserName"] = data.FirstOrDefault().User_Name;
                     data.FirstOrDefault().Last_Login = DateTime.Now;
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -56,13 +58,18 @@ namespace WebSach.Controllers
                     return RedirectToAction("Login");
                 }
             }
-            return View();
+            else
+            {
+                ViewBag.error = "Cannot login";
+                return View();
+
+            }
         }
         //Logout
         public ActionResult Logout()
         {
             Session.Clear();//remove session
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -92,36 +99,41 @@ namespace WebSach.Controllers
         //POST: Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(User _user)
+        public ActionResult Register(User _user, FormCollection form)
         {
             if (ModelState.IsValid)
             {
-                
-                var check = _db.User.FirstOrDefault(s => s.User_Name == _user.User_Name);
-                if (check == null)
+                if(_user.Password == form["confirmpassword"])
                 {
-                    User newUser = new User
+                    var check = _db.User.FirstOrDefault(s => s.User_Name == _user.User_Name);
+                    if (check == null)
                     {
-                        User_Name = _user.User_Name,
-                        Full_Name = _user.Full_Name,
-                        Email = _user.Email,
-                        Password = GetMD5(_user.Password),
-                        Create_at = DateTime.Now,
-                        Permission_Id = false
-                    };
+                        User newUser = new User
+                        {
+                            User_Name = _user.User_Name,
+                            Full_Name = _user.Full_Name,
+                            Email = _user.Email,
+                            Password = GetMD5(_user.Password),
+                            Create_at = DateTime.Now,
+                            Permission_Id = false
+                        };
 
-                    _db.Configuration.ValidateOnSaveEnabled = false;
-                    _db.User.Add(newUser);
-                    _db.SaveChanges();
-                    return RedirectToAction("Index","Home");
+                        _db.Configuration.ValidateOnSaveEnabled = false;
+                        _db.User.Add(newUser);
+                        _db.SaveChanges();
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewBag.error = "Username already exists";
+                        return View();
+                    }
                 }
                 else
                 {
-                    ViewBag.error = "Username already exists";
+                    ViewBag.error = "Confirm password doesn't match!";
                     return View();
                 }
-
-
             }
             return View();
         }

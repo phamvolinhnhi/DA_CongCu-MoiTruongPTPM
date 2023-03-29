@@ -1,7 +1,7 @@
 ﻿@model WebSach.Models.User
 
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -28,16 +28,16 @@
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+            @if (ViewBag.error != null)
+            {
+                <span class="badge badge-danger">@ViewBag.error</span>
+            }
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Sign In" class="btn btn-default" />
                 </div>
             </div>
-            @if (ViewBag.error != null)
-                    {
-                        <span class="badge badge-danger">@ViewBag.error</span>
-                    }
+
         </div>
     }
 </div>

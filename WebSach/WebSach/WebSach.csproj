@@ -136,15 +136,23 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303271512150_edituser.cs" />
+    <Compile Include="Migrations\202303271512150_edituser.designer.cs">
+      <DependentUpon>202303271512150_edituser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303280825261_EditBook.cs" />
+    <Compile Include="Migrations\202303280825261_EditBook.designer.cs">
+      <DependentUpon>202303280825261_EditBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Books.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Chapter.cs" />
-    <Compile Include="Models\Reaction.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WebBookDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,6 +162,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\books\book1.jpg" />
+    <Content Include="Content\images\books\book2.jpg" />
     <Content Include="Content\images\login.jpg" />
     <Content Include="Content\images\banner\reading-book-web-banner-design-student-reading-book-on-stack-of-book-to-get-inspiration-online-education-digital-classroom-e-learning-concept-header-or-footer-banner-free-vector.jpg" />
     <Content Include="Content\images\shortcuticon.png" />
@@ -161,10 +171,8 @@
     <Content Include="CSS\banner.css" />
     <Content Include="CSS\mediastyle.css" />
     <Content Include="CSS\myStyle.css" />
-    <Content Include="CSS\register.css" />
     <Content Include="CSS\style.css" />
     <Content Include="CSS\StyleSheet1_regular.css" />
-    <Content Include="CSS\StyleSheet2.css" />
     <Content Include="CSS\user.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -172,7 +180,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\images\banner\R.jpg" />
     <Content Include="Content\images\banner\SMP-books-banner.jpg" />
-    <Content Include="jsBanner\jssor.slider-23.1.5.min.js" />
+    <Content Include="Scripts\myscripts\jssor.slider-23.1.5.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -186,11 +194,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\myscripts\banner.js" />
-    <Content Include="Scripts\myscripts\JavaScript.js" />
-    <Content Include="Scripts\myscripts\JavaScript1.js" />
-    <Content Include="Scripts\myscripts\JavaScript2.js" />
-    <Content Include="Scripts\myscripts\JavaScript3.js" />
     <Content Include="Scripts\myscripts\myjs.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -209,10 +212,10 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Book\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -226,6 +229,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202303271512150_edituser.resx">
+      <DependentUpon>202303271512150_edituser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303280825261_EditBook.resx">
+      <DependentUpon>202303280825261_EditBook.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

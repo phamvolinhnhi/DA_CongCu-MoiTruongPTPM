@@ -1,8 +1,46 @@
-﻿
+﻿@model WebSach.Models.User
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="div_middle">
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <div class="account-info clearfix">
+                <h2 class="posttitle">Thông tin tài khoản </h2>
+                <div class="group">
+                    <div class="label">Họ và tên</div>
+                    <div class="detail">@Html.DisplayFor(model => model.Full_Name)</div>
+                </div>
+                <div class="group">
+                    <div class="label">Email</div>
+                    <div class="detail">@Html.DisplayFor(model => model.Email)</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="account-info clearfix">
+                <h2 class="posttitle">Avatar</h2>
+                <div class="info-detail">
+                    <div class="forminput">
+                        @*Code upload avatar - phần này chưa code*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="relative">
+                <h2 class="posttitle">Truyện theo dõi</h2>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+@*<p>
+
+    @Html.ActionLink("Back to List", "Profile")
+</p>*@
+
 
