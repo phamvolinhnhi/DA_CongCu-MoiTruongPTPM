@@ -11,6 +11,5 @@ namespace WebSach.Models
         public List<Books> follows;
         public List<Books> histories;
 
-
     }
 }

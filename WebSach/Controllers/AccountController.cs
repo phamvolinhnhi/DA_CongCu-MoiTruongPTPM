@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
-using System.Windows;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using WebSach.Models;
@@ -24,7 +23,6 @@ namespace WebSach.Controllers
         // GET: Account
         public ActionResult Index(string id)
         {
-
             if (String.IsNullOrEmpty(id))
             {
                 return View("Login");
@@ -51,7 +49,6 @@ namespace WebSach.Controllers
                 user = find,
                 follows = listbook,
                 histories = books
-
             };
             return View(viewModel);
         }
@@ -82,7 +79,6 @@ namespace WebSach.Controllers
                     };
                     _db.User_Login.Add(login);
                     _db.SaveChanges();
-
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -152,7 +148,6 @@ namespace WebSach.Controllers
                             Permission_Id = false,
                             Avatar = "/Images/Users/default-avatar.png",
                             Status = "1",
-
                         };
 
                         _db.Configuration.ValidateOnSaveEnabled = false;
@@ -207,6 +202,23 @@ namespace WebSach.Controllers
             return View(books.ToPagedList(page.Value, pageSize));
         }
 
+        public ActionResult History(int? page)
+        {
+            if (Session["UserName"] == null)
+                return View("Login");
+            string name = Session["UserName"].ToString();
+            page = page ?? 1;
+            int pageSize = 24;
+            var list = _db.ReadHistory.Where(L => L.UserName == name).OrderBy(l => l.Time).ToList();
+            var books = new List<Books>();
+            foreach (var item in list)
+            {
+                var find = _db.Books.FirstOrDefault(L => L.Book_Id == item.BookId && L.Status == true);
+                if (find != null)
+                    books.Add(find);
+            }
+            return View(books.ToPagedList(page.Value, pageSize));
+        }
         public ActionResult Edit(string name)
         {
             if (name == null)
@@ -227,8 +239,42 @@ namespace WebSach.Controllers
             _db.SaveChanges();
             MessageBox.Show("Chỉnh sửa thành công");
             return View();
-
         }
 
+        public ActionResult ChangePwd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePwd(User user, System.Web.Mvc.FormCollection form)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var f_password = GetMD5(user.Password);
+                var data = _db.User.FirstOrDefault(s => s.User_Name.Equals(user.User_Name) && s.Password.Equals(f_password) && s.Status == "1" && s.Permission_Id == false);
+                if (data != null)
+                {
+                    data.Password = GetMD5(form["NewPwd"]);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    MessageBox.Show("aaaa");
+
+                    ViewBag.error = "Invalid username or password!";
+                    return View();
+                }
+            }
+            else
+            {
+                MessageBox.Show("aaaa");
+                ViewBag.error = "Invalid username or password!";
+                return View("");
+
+            }
+        }
     }
 }

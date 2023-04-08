@@ -1,7 +1,7 @@
 ﻿@using PagedList.Mvc;
 @model PagedList.IPagedList<WebSach.Models.Books>
 @{
-    ViewBag.Title = "Sách đang theo dõi";
+    ViewBag.Title = "Xếp hạng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -44,9 +44,8 @@
     </div>
     <div class="has-text-centered">
         <div class="MenuTrang">
-            @Html.PagedListPager(Model, page => Url.Action("Follow",
-                                new { page}), new PagedListRenderOptions
-
+            @Html.PagedListPager(Model, page => Url.Action("XepHang",
+                                new { page }), new PagedListRenderOptions
                                  {
                                     DisplayLinkToFirstPage = PagedListDisplayMode.Never,
                                     DisplayLinkToLastPage = PagedListDisplayMode.Never,

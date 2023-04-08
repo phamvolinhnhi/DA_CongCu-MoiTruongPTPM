@@ -1,14 +1,14 @@
 ﻿@model WebSach.Models.User
 
 @{
-    ViewBag.Title = "Sign in";
+    ViewBag.Title = "Change Password";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="div_middle">
-    <h1>Sign in</h1>
+    <h1>@ViewBag.Title</h1>
 
-    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    @using (Html.BeginForm("ChangePwd", "Account", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
@@ -19,6 +19,7 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.User_Name, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "User Name", @Required = "" } })
                     @Html.ValidationMessageFor(model => model.User_Name, "", new { @class = "field-validation-error" })
+
                 </div>
             </div>
 
@@ -27,25 +28,23 @@
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Password", @type = "password", @Required = "" } })
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "field-validation-error" })
                 </div>
-
             </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input class="text" type="password" name="NewPwd" placeholder="New Password" required>
+                </div>
+            </div>
+            <br />
             @if (ViewBag.error != null)
             {
-                <span class="field-validation-error">@ViewBag.error</span>
+                <span class="badge badge-danger">@ViewBag.error</span>
             }
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <h5>@Html.ActionLink("Forget your password?", "ChangePwd", "Account")</h5>
+                    <input type="submit" value="Change Password" class="btn btn-default" />
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Sign In" class="btn btn-default" />
-                </div>
-            </div>
-
-
         </div>
     }
 </div>
