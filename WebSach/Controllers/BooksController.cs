@@ -35,12 +35,17 @@ namespace WebSach.Controllers
                 if (find == null)
                     books.isFollowing = false;
                 else books.isFollowing = true;
-                var findi = _db.ReadHistory.FirstOrDefault(c=>c.UserName == name && c.BookId == id);
+                var findi = _db.ReadHistory.FirstOrDefault(c => c.UserName == name && c.BookId == id);
                 if (findi != null)
-                    viewModel.chapterid = findi.ChapId;
+                {
+                    var findc = _db.Chapter.FirstOrDefault(c => c.Chapter_Id == findi.ChapId && c.Status == true);
+                    if (findc != null)
+                        viewModel.chapterid = findc.Chapter_Id;
+                }
+
             }
             viewModel.book = books;
-            viewModel.Chapters = _db.Chapter.Where(c => c.Book_Id == id).ToList();
+            viewModel.Chapters = _db.Chapter.Where(c => c.Book_Id == id && c.Status == true).ToList();
             return View(viewModel);
 
         }
@@ -64,7 +69,7 @@ namespace WebSach.Controllers
                 return View("Index", "Home");
             }
 
-            Chapter chapter = _db.Chapter.Where(c => c.Chapter_Id == id.Value && c.Book_Id == bookid).FirstOrDefault();
+            Chapter chapter = _db.Chapter.Where(c => c.Chapter_Id == id.Value && c.Book_Id == bookid && c.Status == true).FirstOrDefault();
             if (chapter == null)
             {
                 return HttpNotFound();
@@ -74,7 +79,7 @@ namespace WebSach.Controllers
             var viewModel = new BooksViewModel
             {
                 book = bookf,
-                Chapters = _db.Chapter.Where(c => c.Book_Id == bookid).ToList(),
+                Chapters = _db.Chapter.Where(c => c.Book_Id == bookid && c.Status == true).ToList(),
                 chapter = chapter
             };
             if (Session["UserName"] != null)

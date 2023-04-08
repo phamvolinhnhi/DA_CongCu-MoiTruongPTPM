@@ -66,7 +66,7 @@ namespace WebSach.Controllers
             if (ModelState.IsValid)
             {
                 var f_password = GetMD5(_user.Password);
-                var data = _db.User.FirstOrDefault(s => s.User_Name.Equals(_user.User_Name) && s.Password.Equals(f_password) && s.Permission_Id == false);
+                var data = _db.User.FirstOrDefault(s => s.User_Name.Equals(_user.User_Name) && s.Password.Equals(f_password) && s.Status == "1" && s.Permission_Id == false);
                 if (data != null)
                 {
                     //add session
@@ -146,7 +146,8 @@ namespace WebSach.Controllers
                             Password = GetMD5(_user.Password),
                             Create_at = DateTime.Now,
                             Permission_Id = false,
-                            Avatar = "/Images/Users/default-avatar.png"
+                            Avatar = "/Images/Users/default-avatar.png",
+                            Status = "1",
                         };
 
                         _db.Configuration.ValidateOnSaveEnabled = false;
@@ -194,8 +195,9 @@ namespace WebSach.Controllers
             var books = new List<Books>();
             foreach (var item in list)
             {
-                var find = _db.Books.FirstOrDefault(L => L.Book_Id == item.bookId);
-                books.Add(find);
+                var find = _db.Books.FirstOrDefault(L => L.Book_Id == item.bookId && L.Status == true);
+                if (find != null)
+                    books.Add(find);
             }
             return View(books.ToPagedList(page.Value, pageSize));
         }
@@ -211,17 +213,18 @@ namespace WebSach.Controllers
             var books = new List<Books>();
             foreach (var item in list)
             {
-                var find = _db.Books.FirstOrDefault(L => L.Book_Id == item.BookId);
-                books.Add(find);
+                var find = _db.Books.FirstOrDefault(L => L.Book_Id == item.BookId && L.Status == true);
+                if (find != null)
+                    books.Add(find);
             }
             return View(books.ToPagedList(page.Value, pageSize));
         }
 
         public ActionResult Edit(string name)
         {
-            if(name == null)
+            if (name == null)
                 return HttpNotFound();
-            var find = _db.User.FirstOrDefault(f=>f.User_Name==name);
+            var find = _db.User.FirstOrDefault(f => f.User_Name == name);
             if (find == null)
                 return HttpNotFound();
             return View(find);
@@ -237,6 +240,42 @@ namespace WebSach.Controllers
             _db.SaveChanges();
             MessageBox.Show("Chỉnh sửa thành công");
             return View();
+        }
+
+        public ActionResult ChangePwd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePwd(User user, System.Web.Mvc.FormCollection form)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var f_password = GetMD5(user.Password);
+                var data = _db.User.FirstOrDefault(s => s.User_Name.Equals(user.User_Name) && s.Password.Equals(f_password) && s.Status == "1" && s.Permission_Id == false);
+                if (data != null)
+                {
+                    data.Password = GetMD5(form["NewPwd"]);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    MessageBox.Show("aaaa");
+
+                    ViewBag.error = "Invalid username or password!";
+                    return View();
+                }
+            }
+            else
+            {
+                MessageBox.Show("aaaa");
+                ViewBag.error = "Invalid username or password!";
+                return View("");
+
+            }
         }
     }
 }

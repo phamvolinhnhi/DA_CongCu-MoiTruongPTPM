@@ -24,7 +24,7 @@ namespace WebSach.Controllers
             {
                 search = search ?? "";
                 ViewBag.Keyword = search;
-                var Books = GetAll(search).ToPagedList(page.Value, pageSize);
+                var Books = GetAll(search).Where(c=>c.Status == true).ToPagedList(page.Value, pageSize);
                 return View(Books);
             }
             else
@@ -46,24 +46,24 @@ namespace WebSach.Controllers
 
         public List<Books> GetAllOrderByView()
         {
-            return _db.Books.OrderBy(c => c.View).ToList();
+            return _db.Books.OrderByDescending(c => c.View).ToList();
         }
         public List<Books> GetAllOrderByDate()
         {
-            return _db.Books.OrderBy(c => c.View).ToList();
+            return _db.Books.OrderByDescending(c => c.View).ToList();
         }
 
         public ActionResult SachMoi(int? page)
         {
             page = page ?? 1;
             int pageSize = 24;
-            return View(GetAllOrderByDate().ToPagedList(page.Value, pageSize));
+            return View(GetAllOrderByDate().Where(c=>c.Status == true).ToPagedList(page.Value, pageSize));
         }
         public ActionResult XepHang(int? page)
         {
             page = page ?? 1;
             int pageSize = 24;
-            return View(GetAllOrderByView().ToPagedList(page.Value, pageSize));
+            return View(GetAllOrderByView().Where(c => c.Status == true).ToPagedList(page.Value, pageSize));
         }
 
         public Books FindBookById(int id)
@@ -78,7 +78,7 @@ namespace WebSach.Controllers
         }
         public ActionResult TopBooks()
         {
-            var topBooks = _db.Books.OrderByDescending(b => b.View).Take(3).ToList();
+            var topBooks = _db.Books.Where(c => c.Status == true).OrderByDescending(b => b.View).Take(3).ToList();
             return PartialView("_TopBooks", topBooks);
         }
     }

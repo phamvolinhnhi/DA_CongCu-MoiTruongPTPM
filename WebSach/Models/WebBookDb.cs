@@ -23,6 +23,11 @@ namespace WebSach.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Books>()
+                .HasMany(e => e.Chapter)
+                .WithRequired(e => e.Books)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Books>()
                 .HasMany(e => e.ReadHistory)
                 .WithRequired(e => e.Books)
                 .HasForeignKey(e => e.BookId)

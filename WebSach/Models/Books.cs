@@ -11,6 +11,7 @@ namespace WebSach.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Books()
         {
+            Chapter = new HashSet<Chapter>();
             ReadHistory = new HashSet<ReadHistory>();
         }
 
@@ -42,10 +43,14 @@ namespace WebSach.Models
         [StringLength(50)]
         public string User_Name { get; set; }
 
-        public virtual Categories Categories { get; set; }
+        public bool? Status { get; set; }
 
-        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Chapter> Chapter { get; set; }
+
+        public virtual Categories Categories { get; set; }
         public bool isFollowing = false;
+        public virtual User User { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReadHistory> ReadHistory { get; set; }

@@ -44,8 +44,8 @@
     </div>
     <div class="has-text-centered">
         <div class="MenuTrang">
-            @Html.PagedListPager(Model, page => Url.Action("Index",
-                                new { page, search = ViewBag.Keyword }), new PagedListRenderOptions
+            @Html.PagedListPager(Model, page => Url.Action("SachMoi",
+                                new { page }), new PagedListRenderOptions
                                  {
                                     DisplayLinkToFirstPage = PagedListDisplayMode.Never,
                                     DisplayLinkToLastPage = PagedListDisplayMode.Never,

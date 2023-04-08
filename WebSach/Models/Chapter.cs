@@ -28,6 +28,10 @@ namespace WebSach.Models
 
         public DateTime? UpdateTime { get; set; }
 
+        public bool? Status { get; set; }
+
+        public virtual Books Books { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReadHistory> ReadHistory { get; set; }
     }

@@ -134,12 +134,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\WebAdmin\Controllers\AdminBooksController.cs" />
-    <Compile Include="Areas\WebAdmin\Controllers\AdminCategoriesController.cs" />
-    <Compile Include="Areas\WebAdmin\Controllers\AdminChaptersController.cs" />
-    <Compile Include="Areas\WebAdmin\Controllers\AdminUsersController.cs" />
-    <Compile Include="Areas\WebAdmin\Controllers\HomeAdminController.cs" />
-    <Compile Include="Areas\WebAdmin\WebAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -181,6 +175,7 @@
     <Content Include="CSS\admin2.css" />
     <Content Include="CSS\me.css" />
     <Content Include="CSS\StyleSheet1.css" />
+    <Content Include="CSS\StyleSheet3.css" />
     <Content Include="CSS\user.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -204,39 +199,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\WebAdmin\Views\web.config" />
-    <Content Include="Areas\WebAdmin\Views\AdminBooks\Create.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminBooks\Delete.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminBooks\Details.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminBooks\Edit.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminBooks\Index.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminCategories\Create.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminCategories\Delete.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminCategories\Details.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminCategories\Edit.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminCategories\Index.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminChapters\Create.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminChapters\Delete.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminChapters\Details.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminChapters\Edit.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminChapters\Index.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminUsers\Create.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminUsers\Delete.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminUsers\Details.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminUsers\Edit.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminUsers\Index.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\AdminUsers\Login.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\HomeAdmin\Category.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\HomeAdmin\Index.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\HomeAdmin\SachMoi.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\HomeAdmin\TheLoai.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\HomeAdmin\TopBooks.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\HomeAdmin\XepHang.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\Shared\Error.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\Shared\_Category.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\Shared\_TopBooks.cshtml" />
-    <Content Include="Areas\WebAdmin\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -274,10 +236,11 @@
     <Content Include="Views\Shared\_Category.cshtml" />
     <Content Include="Views\Shared\_TopBooks.cshtml" />
     <Content Include="Views\Account\History.cshtml" />
+    <Content Include="Views\Account\ChangePwd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\WebAdmin\Data\" />
+    <Folder Include="Content\ContentChapter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
