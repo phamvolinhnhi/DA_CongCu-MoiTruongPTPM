@@ -62,6 +62,8 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
+
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -148,9 +150,12 @@
     <Compile Include="Models\BooksViewModel.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Chapter.cs" />
-    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Follow.cs" />
+    <Compile Include="Models\ReadHistory.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Models\User_Login.cs" />
+
     <Compile Include="Models\WebBookDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -179,17 +184,25 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Banner\R.jpg" />
+    <Content Include="Images\Banner\reading-book-web-banner-design-student-reading-book-on-stack-of-book-to-get-inspiration-online-education-digital-classroom-e-learning-concept-header-or-footer-banner-free-vector.jpg" />
+    <Content Include="Images\Banner\SMP-books-banner.jpg" />
+
     <Content Include="Images\Books\book1.jpg" />
     <Content Include="Images\Books\book2.jpg" />
     <Content Include="Images\Books\book3.jpg" />
     <Content Include="Images\Books\book4.jpg" />
     <Content Include="Images\Books\book5.jpg" />
     <Content Include="Images\Books\book6.jpg" />
-    <Content Include="Images\Banner\R.jpg" />
-    <Content Include="Images\Banner\reading-book-web-banner-design-student-reading-book-on-stack-of-book-to-get-inspiration-online-education-digital-classroom-e-learning-concept-header-or-footer-banner-free-vector.jpg" />
-    <Content Include="Images\Banner\SMP-books-banner.jpg" />
+    <Content Include="Images\Contacts\fb.png" />
+    <Content Include="Images\Contacts\ytb.png" />
     <Content Include="Images\shortcuticon.png" />
+    <Content Include="Images\Users\bfdadmin.jpg" />
+    <Content Include="Images\Users\bfduser.jpg" />
     <Content Include="Images\Users\default-avatar.png" />
+    <Content Include="Images\Users\fb.png" />
+    <Content Include="Images\Users\ytb.png" />
+
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -222,12 +235,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Books\Index.cshtml" />
-    <Content Include="Views\Books\Sach.cshtml" />
-    <Content Include="Views\Books\Chapter.cshtml" />
-    <Content Include="Views\Home\Books.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\Follow.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
 
   </ItemGroup>
   <ItemGroup>
