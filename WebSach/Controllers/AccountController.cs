@@ -24,6 +24,7 @@ namespace WebSach.Controllers
         // GET: Account
         public ActionResult Index(string id)
         {
+
             if (String.IsNullOrEmpty(id))
             {
                 return View("Login");
@@ -50,6 +51,7 @@ namespace WebSach.Controllers
                 user = find,
                 follows = listbook,
                 histories = books
+
             };
             return View(viewModel);
         }
@@ -80,6 +82,7 @@ namespace WebSach.Controllers
                     };
                     _db.User_Login.Add(login);
                     _db.SaveChanges();
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -149,6 +152,7 @@ namespace WebSach.Controllers
                             Permission_Id = false,
                             Avatar = "/Images/Users/default-avatar.png",
                             Status = "1",
+
                         };
 
                         _db.Configuration.ValidateOnSaveEnabled = false;
@@ -223,6 +227,7 @@ namespace WebSach.Controllers
             _db.SaveChanges();
             MessageBox.Show("Chỉnh sửa thành công");
             return View();
+
         }
 
     }

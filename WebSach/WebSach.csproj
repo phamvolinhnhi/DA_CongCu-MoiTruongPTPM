@@ -63,6 +63,7 @@
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
+
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -135,10 +136,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304041200281_create.cs" />
+    <Compile Include="Migrations\202304041200281_create.designer.cs">
+      <DependentUpon>202304041200281_create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Books.cs" />
     <Compile Include="Models\BooksViewModel.cs" />
     <Compile Include="Models\Categories.cs" />
@@ -148,6 +155,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\User_Login.cs" />
+
     <Compile Include="Models\WebBookDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -170,13 +178,16 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="CSS\media.css" />
+    <Content Include="CSS\media2.css" />
     <Content Include="CSS\StyleSheet1.css" />
+    <Content Include="CSS\StyleSheet4.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Banner\R.jpg" />
     <Content Include="Images\Banner\reading-book-web-banner-design-student-reading-book-on-stack-of-book-to-get-inspiration-online-education-digital-classroom-e-learning-concept-header-or-footer-banner-free-vector.jpg" />
     <Content Include="Images\Banner\SMP-books-banner.jpg" />
+
     <Content Include="Images\Books\book1.jpg" />
     <Content Include="Images\Books\book2.jpg" />
     <Content Include="Images\Books\book3.jpg" />
@@ -191,6 +202,7 @@
     <Content Include="Images\Users\default-avatar.png" />
     <Content Include="Images\Users\fb.png" />
     <Content Include="Images\Users\ytb.png" />
+
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -226,6 +238,7 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Follow.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -256,6 +269,11 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202304041200281_create.resx">
+      <DependentUpon>202304041200281_create.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

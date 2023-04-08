@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/CSS/admin2.css" type="text/css" />
     <link rel="stylesheet" href="~/CSS/StyleSheet3.css" type="text/css" />
 
+
     @Scripts.Render("~/bundles/modernizr")
 
     @Styles.Render("~/Content/DevExtremeBundle")
@@ -63,6 +64,7 @@
                 </div>
                 <div class="top_search">
                     <form method="get" action="@Url.Action("Index", "Home")">
+
                         <input class="search" value="@ViewBag.Keyword" id="search_input" name="search" placeholder="Bạn muốn tìm truyện gì?" />
                         <button type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
@@ -130,6 +132,7 @@
         <div class="categories">
             <h3>Thể loại</h3>
             @Html.Action("Category", "Home")
+
         </div>
         <div class="ranking">
             @Html.Action("TopBooks", "Home")

@@ -67,6 +67,7 @@ namespace WebSach.Controllers
         {
             var topBooks = _db.Books.Where(c => c.Status == true).OrderByDescending(b => b.View).Take(3).ToList();
             return PartialView("_TopBooks", topBooks);
+
         }
     }
 }
