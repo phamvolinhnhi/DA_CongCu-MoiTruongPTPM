@@ -25,6 +25,7 @@ namespace WebSach.Controllers
                 search = search ?? "";
                 ViewBag.Keyword = search;
                 var Books = GetAll(search).Where(c=>c.Status == true).ToPagedList(page.Value, pageSize);
+
                 return View(Books);
             }
             else
@@ -64,6 +65,7 @@ namespace WebSach.Controllers
             page = page ?? 1;
             int pageSize = 24;
             return View(GetAllOrderByView().Where(c => c.Status == true).ToPagedList(page.Value, pageSize));
+
         }
 
         public Books FindBookById(int id)
@@ -80,6 +82,7 @@ namespace WebSach.Controllers
         {
             var topBooks = _db.Books.Where(c => c.Status == true).OrderByDescending(b => b.View).Take(3).ToList();
             return PartialView("_TopBooks", topBooks);
+
         }
     }
 }

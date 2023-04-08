@@ -46,6 +46,7 @@
         <div class="MenuTrang">
             @Html.PagedListPager(Model, page => Url.Action("Follow",
                                 new { page}), new PagedListRenderOptions
+
                                  {
                                     DisplayLinkToFirstPage = PagedListDisplayMode.Never,
                                     DisplayLinkToLastPage = PagedListDisplayMode.Never,

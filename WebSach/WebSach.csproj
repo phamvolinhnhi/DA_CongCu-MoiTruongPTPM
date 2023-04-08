@@ -62,6 +62,8 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
+
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -180,6 +182,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Banner\R.jpg" />
+    <Content Include="Images\Banner\reading-book-web-banner-design-student-reading-book-on-stack-of-book-to-get-inspiration-online-education-digital-classroom-e-learning-concept-header-or-footer-banner-free-vector.jpg" />
+    <Content Include="Images\Banner\SMP-books-banner.jpg" />
+
     <Content Include="Images\Books\book1.jpg" />
     <Content Include="Images\Books\book2.jpg" />
     <Content Include="Images\Books\book3.jpg" />
@@ -192,7 +198,12 @@
     <Content Include="Images\Contacts\fb.png" />
     <Content Include="Images\Contacts\ytb.png" />
     <Content Include="Images\shortcuticon.png" />
+    <Content Include="Images\Users\bfdadmin.jpg" />
+    <Content Include="Images\Users\bfduser.jpg" />
     <Content Include="Images\Users\default-avatar.png" />
+    <Content Include="Images\Users\fb.png" />
+    <Content Include="Images\Users\ytb.png" />
+
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
