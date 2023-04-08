@@ -1,30 +1,72 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebSach.Models;
 
 namespace WebSach.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private readonly WebBookDb _db;
+        public HomeController()
         {
-            return View();
+            _db = new WebBookDb();
+        }
+        public ActionResult Index(int? page, string search, int? type)
+        {
+            page = page ?? 1;
+            int pageSize = 24;
+            if (type == null)
+            {
+                search = search ?? "";
+                ViewBag.Keyword = search;
+                var Books = GetAll(search).Where(c => c.Status == true).ToPagedList(page.Value, pageSize);
+                return View(Books);
+            }
+            else
+            {
+                var Books = GetAll(type).ToPagedList(page.Value, pageSize);
+                return View(Books);
+            }
         }
 
-        public ActionResult About()
+        public List<Books> GetAll() => _db.Books.ToList();
+        public List<Books> GetAll(string searchKey)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return _db.Books.Where(p => p.Title.Contains(searchKey)).ToList();
+        }
+        public List<Books> GetAll(int? type)
+        {
+            return _db.Books.Where(p => p.Category_Id == type).ToList();
         }
 
-        public ActionResult Contact()
+        public List<Books> GetAllOrderByView()
         {
-            ViewBag.Message = "Your contact page.";
+            return _db.Books.OrderBy(c => c.View).ToList();
+        }
+        public List<Books> GetAllOrderByDate()
+        {
+            return _db.Books.OrderBy(c => c.View).ToList();
+        }
 
-            return View();
+        public Books FindBookById(int id)
+        {
+            return _db.Books.FirstOrDefault(p => p.Book_Id == id);
+        }
+
+        public ActionResult Category()
+        {
+            var Category = _db.Categories.ToList();
+            return PartialView("_Category", Category);
+        }
+        public ActionResult TopBooks()
+        {
+            var topBooks = _db.Books.Where(c => c.Status == true).OrderByDescending(b => b.View).Take(3).ToList();
+            return PartialView("_TopBooks", topBooks);
         }
     }
 }

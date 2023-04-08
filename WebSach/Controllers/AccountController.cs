@@ -1,35 +1,60 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Windows;
+using System.Windows.Forms;
+using System.Xml.Linq;
 using WebSach.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WebSach.Controllers
 {
     public class AccountController : Controller
     {
         private WebBookDb _db = new WebBookDb();
+
         // GET: Account
         public ActionResult Index(string id)
         {
-
             if (String.IsNullOrEmpty(id))
             {
-                return HttpNotFound();
+                return View("Login");
             }
-            User find = _db.User.FirstOrDefault(p => p.User_Name == id);
+            var find = _db.User.FirstOrDefault(p => p.User_Name == id);
             if (find == null)
                 return HttpNotFound();
-            return View(find);
-
+            var listfollow = _db.Follow.Where(f => f.userName == id);
+            var listbook = new List<Books>();
+            foreach (var item in listfollow)
+            {
+                var book = _db.Books.FirstOrDefault(b => b.Book_Id == item.bookId);
+                listbook.Add(book);
+            }
+            var list = _db.ReadHistory.Where(L => L.UserName == id).OrderBy(l => l.Time).ToList();
+            var books = new List<Books>();
+            foreach (var item in list)
+            {
+                var findbook = _db.Books.FirstOrDefault(L => L.Book_Id == item.BookId);
+                books.Add(findbook);
+            }
+            var viewModel = new UserViewModel
+            {
+                user = find,
+                follows = listbook,
+                histories = books
+            };
+            return View(viewModel);
         }
 
         // LOGIN
-        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
@@ -42,14 +67,19 @@ namespace WebSach.Controllers
             if (ModelState.IsValid)
             {
                 var f_password = GetMD5(_user.Password);
-                var data = _db.User.Where(s => s.User_Name.Equals(_user.User_Name) && s.Password.Equals(f_password)).ToList();
-                if (data.Count() > 0)
+                var data = _db.User.FirstOrDefault(s => s.User_Name.Equals(_user.User_Name) && s.Password.Equals(f_password) && s.Status == "1" && s.Permission_Id == false);
+                if (data != null)
                 {
                     //add session
-                    Session["Email"] = data.FirstOrDefault().Email;
-                    Session["FullName"] = data.FirstOrDefault().Full_Name;
-                    Session["UserName"] = data.FirstOrDefault().User_Name;
-                    data.FirstOrDefault().Last_Login = DateTime.Now;
+                    Session["UserName"] = data.User_Name;
+                    data.Last_Login = DateTime.Now;
+                    var login = new User_Login
+                    {
+                        UserName = _user.User_Name,
+                        LoginTime = DateTime.Now,
+                    };
+                    _db.User_Login.Add(login);
+                    _db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -98,8 +128,9 @@ namespace WebSach.Controllers
 
         //POST: Register
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(User _user, FormCollection form)
+        public ActionResult Register(User _user, System.Web.Mvc.FormCollection form)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +146,9 @@ namespace WebSach.Controllers
                             Email = _user.Email,
                             Password = GetMD5(_user.Password),
                             Create_at = DateTime.Now,
-                            Permission_Id = false
+                            Permission_Id = false,
+                            Avatar = "/Images/Users/default-avatar.png",
+                            Status = "1",
                         };
 
                         _db.Configuration.ValidateOnSaveEnabled = false;
@@ -137,5 +170,60 @@ namespace WebSach.Controllers
             }
             return View();
         }
+
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            if (file == null)
+            {
+                return "";
+            }
+            file.SaveAs(Server.MapPath("~/Images/Users/" + file.FileName));
+            return "/Images/Users/" + file.FileName;
+        }
+
+        public ActionResult Follow(int? page)
+        {
+            if (Session["UserName"] == null)
+                return View("Login");
+            page = page ?? 1;
+            string name = Session["UserName"].ToString();
+            int pageSize = 24;
+            if (Session["UserName"] == null)
+            {
+                return View("Login");
+            }
+            var list = _db.Follow.Where(L => L.userName == name).ToList();
+            var books = new List<Books>();
+            foreach (var item in list)
+            {
+                var find = _db.Books.FirstOrDefault(L => L.Book_Id == item.bookId && L.Status == true);
+                if (find != null)
+                    books.Add(find);
+            }
+            return View(books.ToPagedList(page.Value, pageSize));
+        }
+
+        public ActionResult Edit(string name)
+        {
+            if (name == null)
+                return HttpNotFound();
+            var find = _db.User.FirstOrDefault(f => f.User_Name == name);
+            if (find == null)
+                return HttpNotFound();
+            return View(find);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User user)
+        {
+            var find = _db.User.FirstOrDefault(f => f.User_Name == user.User_Name);
+            find.Full_Name = user.Full_Name;
+            find.Avatar = user.Avatar;
+            find.Email = user.Email;
+            _db.SaveChanges();
+            MessageBox.Show("Chỉnh sửa thành công");
+            return View();
+        }
+
     }
 }
